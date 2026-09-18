@@ -35,6 +35,7 @@
 
     #world {
       position: relative;
+
       width: calc(100% - 40px);
       max-width: 1100px;
       height: 650px;
@@ -49,11 +50,18 @@
       overflow: hidden;
     }
 
+
+    /* =========================
+       KINGDOM
+    ========================= */
+
     .kingdom {
       position: absolute;
+
       text-align: center;
 
       transform: translate(-50%, -50%);
+
       cursor: pointer;
 
       transition:
@@ -62,28 +70,135 @@
     }
 
     .kingdom:hover {
-      transform: translate(-50%, -50%) scale(1.1);
-      filter: brightness(1.05);
+      transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+      filter: brightness(1.04);
     }
 
+
+    /* =========================
+       CASTLE
+    ========================= */
+
     .castle {
-      line-height: 1;
+      display: flex;
+
+      align-items: flex-end;
+      justify-content: center;
+
+      gap: 4px;
+
+      height: 85px;
+
       user-select: none;
     }
 
-    .company {
-      margin-top: 7px;
-      font-size: 13px;
-      font-weight: bold;
+
+    /* 기본 타워 */
+
+    .tower {
+      position: relative;
+
+      width: 34px;
+      height: 47px;
+
+      background: #d8cfbd;
+
+      border: 2px solid #aaa08d;
+
+      border-radius: 3px 3px 0 0;
     }
 
+
+    /* 빨간 지붕 */
+
+    .tower::before {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      top: -22px;
+
+      transform: translateX(-50%);
+
+      width: 0;
+      height: 0;
+
+      border-left: 21px solid transparent;
+      border-right: 21px solid transparent;
+
+      border-bottom: 23px solid #c94f48;
+    }
+
+
+    /* 문 */
+
+    .tower::after {
+      content: "";
+
+      position: absolute;
+
+      width: 9px;
+      height: 15px;
+
+      bottom: 0;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      background: #554b40;
+
+      border-radius: 5px 5px 0 0;
+    }
+
+
+    /* 가운데 메인 타워 */
+
+    .tower.main {
+      width: 42px;
+      height: 61px;
+
+      background: #e1d8c6;
+    }
+
+    .tower.main::before {
+      border-left-width: 25px;
+      border-right-width: 25px;
+      border-bottom-width: 27px;
+
+      top: -26px;
+    }
+
+
+    /* =========================
+       COMPANY NAME
+    ========================= */
+
+    .company {
+      margin-top: 8px;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      letter-spacing: 0.5px;
+    }
+
+
+    /* =========================
+       COMPUTE BAR
+    ========================= */
+
     .compute-bar {
-      width: 80px;
+      width: 90px;
       height: 6px;
 
       margin: 7px auto 0;
 
       background: rgba(0,0,0,0.12);
+
       border-radius: 10px;
 
       overflow: hidden;
@@ -91,57 +206,67 @@
 
     .compute-fill {
       height: 100%;
+
       background: #555;
+
       border-radius: 10px;
     }
 
-    /* 회사 위치 */
+
+    /* =========================
+       COMPANY POSITION
+    ========================= */
 
     #google {
       left: 50%;
-      top: 16%;
+      top: 17%;
     }
 
     #aws {
       left: 25%;
-      top: 34%;
+      top: 35%;
     }
 
     #xai {
       left: 75%;
-      top: 34%;
+      top: 35%;
     }
 
     #meta {
       left: 50%;
-      top: 54%;
+      top: 55%;
     }
 
     #microsoft {
       left: 24%;
-      top: 76%;
+      top: 77%;
     }
 
     #oracle {
       left: 76%;
-      top: 76%;
+      top: 77%;
     }
 
-    /* 정보창 */
+
+    /* =========================
+       INFO PANEL
+    ========================= */
 
     #info {
       position: absolute;
 
       left: 50%;
-      bottom: 20px;
+      bottom: 18px;
 
       transform: translateX(-50%);
 
-      width: 300px;
+      width: 310px;
 
       padding: 18px;
 
-      background: rgba(255,255,255,0.94);
+      background: rgba(255,255,255,0.96);
+
+      border: 1px solid rgba(0,0,0,0.06);
 
       border-radius: 14px;
 
@@ -149,37 +274,104 @@
         0 8px 25px rgba(0,0,0,0.12);
 
       display: none;
+
+      z-index: 20;
     }
 
     #info h2 {
       margin: 0 0 10px;
+
       font-size: 18px;
     }
 
     #info p {
       margin: 5px 0;
+
       font-size: 13px;
     }
 
     .status {
-      color: #777;
+      color: #888;
     }
+
+
+    /* =========================
+       LEGEND
+    ========================= */
+
+    .legend {
+      position: absolute;
+
+      right: 18px;
+      top: 18px;
+
+      padding: 10px 13px;
+
+      background: rgba(255,255,255,0.72);
+
+      border-radius: 10px;
+
+      font-size: 11px;
+
+      color: #666;
+    }
+
 
     footer {
       text-align: center;
+
       font-size: 11px;
+
       color: #999;
+
       padding: 10px 0 30px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      #world {
+        height: 700px;
+      }
+
+      .legend {
+        display: none;
+      }
+
+      #aws {
+        left: 23%;
+      }
+
+      #xai {
+        left: 77%;
+      }
+
+      #microsoft {
+        left: 23%;
+      }
+
+      #oracle {
+        left: 77%;
+      }
+
     }
 
   </style>
 </head>
 
+
 <body>
+
 
 <header>
 
-  <h1>🏰 Compute Kingdom</h1>
+  <h1>
+    🏰 Compute Kingdom
+  </h1>
 
   <div class="subtitle">
     Visualizing the global AI compute race
@@ -188,20 +380,44 @@
 </header>
 
 
+
 <div id="world">
 
-  <!-- GOOGLE -->
+
+  <!-- LEGEND -->
+
+  <div class="legend">
+
+    Castle size = Compute Tier<br>
+    Prototype V0.2
+
+  </div>
+
+
+
+  <!-- =========================
+       GOOGLE
+       LARGE : 3 ROOFS
+  ========================== -->
 
   <div
     class="kingdom"
     id="google"
+
     data-company="Google"
+    data-tier="Large"
     data-compute="100"
     data-future="25"
   >
 
-    <div class="castle" style="font-size:80px;">
-      🏰
+    <div class="castle">
+
+      <div class="tower"></div>
+
+      <div class="tower main"></div>
+
+      <div class="tower"></div>
+
     </div>
 
     <div class="company">
@@ -209,27 +425,41 @@
     </div>
 
     <div class="compute-bar">
+
       <div
         class="compute-fill"
         style="width:100%">
       </div>
+
     </div>
 
   </div>
 
 
-  <!-- AWS -->
+
+  <!-- =========================
+       AWS
+       LARGE : 3 ROOFS
+  ========================== -->
 
   <div
     class="kingdom"
     id="aws"
+
     data-company="AWS"
+    data-tier="Large"
     data-compute="85"
     data-future="40"
   >
 
-    <div class="castle" style="font-size:68px;">
-      🏰
+    <div class="castle">
+
+      <div class="tower"></div>
+
+      <div class="tower main"></div>
+
+      <div class="tower"></div>
+
     </div>
 
     <div class="company">
@@ -237,27 +467,39 @@
     </div>
 
     <div class="compute-bar">
+
       <div
         class="compute-fill"
         style="width:85%">
       </div>
+
     </div>
 
   </div>
 
 
-  <!-- xAI -->
+
+  <!-- =========================
+       xAI
+       MEDIUM : 2 ROOFS
+  ========================== -->
 
   <div
     class="kingdom"
     id="xai"
+
     data-company="xAI"
+    data-tier="Medium"
     data-compute="70"
     data-future="50"
   >
 
-    <div class="castle" style="font-size:60px;">
-      🏰
+    <div class="castle">
+
+      <div class="tower main"></div>
+
+      <div class="tower"></div>
+
     </div>
 
     <div class="company">
@@ -265,27 +507,39 @@
     </div>
 
     <div class="compute-bar">
+
       <div
         class="compute-fill"
         style="width:70%">
       </div>
+
     </div>
 
   </div>
 
 
-  <!-- META -->
+
+  <!-- =========================
+       META
+       MEDIUM : 2 ROOFS
+  ========================== -->
 
   <div
     class="kingdom"
     id="meta"
+
     data-company="Meta"
+    data-tier="Medium"
     data-compute="65"
     data-future="45"
   >
 
-    <div class="castle" style="font-size:57px;">
-      🏰
+    <div class="castle">
+
+      <div class="tower main"></div>
+
+      <div class="tower"></div>
+
     </div>
 
     <div class="company">
@@ -293,27 +547,37 @@
     </div>
 
     <div class="compute-bar">
+
       <div
         class="compute-fill"
         style="width:65%">
       </div>
+
     </div>
 
   </div>
 
 
-  <!-- MICROSOFT -->
+
+  <!-- =========================
+       MICROSOFT
+       SMALL : 1 ROOF
+  ========================== -->
 
   <div
     class="kingdom"
     id="microsoft"
+
     data-company="Microsoft"
+    data-tier="Small"
     data-compute="60"
     data-future="30"
   >
 
-    <div class="castle" style="font-size:54px;">
-      🏰
+    <div class="castle">
+
+      <div class="tower main"></div>
+
     </div>
 
     <div class="company">
@@ -321,27 +585,37 @@
     </div>
 
     <div class="compute-bar">
+
       <div
         class="compute-fill"
         style="width:60%">
       </div>
+
     </div>
 
   </div>
 
 
-  <!-- ORACLE -->
+
+  <!-- =========================
+       ORACLE
+       SMALL : 1 ROOF
+  ========================== -->
 
   <div
     class="kingdom"
     id="oracle"
+
     data-company="Oracle"
+    data-tier="Small"
     data-compute="50"
     data-future="35"
   >
 
-    <div class="castle" style="font-size:50px;">
-      🏰
+    <div class="castle">
+
+      <div class="tower main"></div>
+
     </div>
 
     <div class="company">
@@ -349,20 +623,31 @@
     </div>
 
     <div class="compute-bar">
+
       <div
         class="compute-fill"
         style="width:50%">
       </div>
+
     </div>
 
   </div>
 
 
-  <!-- INFO PANEL -->
+
+  <!-- =========================
+       INFO PANEL
+  ========================== -->
 
   <div id="info">
 
-    <h2 id="info-company"></h2>
+    <h2 id="info-company">
+    </h2>
+
+    <p>
+      Castle Tier :
+      <strong id="info-tier"></strong>
+    </p>
 
     <p>
       Current Compute :
@@ -375,19 +660,22 @@
     </p>
 
     <p class="status">
-      Prototype data
+      ⚠ Prototype data — not actual compute ranking
     </p>
 
   </div>
 
+
 </div>
+
 
 
 <footer>
 
-  Compute Kingdom • Prototype V0.1
+  Compute Kingdom • Prototype V0.2
 
 </footer>
+
 
 
 <script>
@@ -395,17 +683,26 @@
   const kingdoms =
     document.querySelectorAll(".kingdom");
 
+
   const info =
     document.getElementById("info");
+
 
   const company =
     document.getElementById("info-company");
 
+
+  const tier =
+    document.getElementById("info-tier");
+
+
   const compute =
     document.getElementById("info-compute");
 
+
   const future =
     document.getElementById("info-future");
+
 
 
   kingdoms.forEach((kingdom) => {
@@ -416,6 +713,9 @@
 
         company.textContent =
           kingdom.dataset.company;
+
+        tier.textContent =
+          kingdom.dataset.tier;
 
         compute.textContent =
           kingdom.dataset.compute;
@@ -432,6 +732,7 @@
   });
 
 </script>
+
 
 </body>
 </html>
