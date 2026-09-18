@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- ========================================
+       ★ V0.5 CACHE CONTROL
+       개발 중 이전 페이지가 캐시에 남는 현상 완화
+  ======================================== -->
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Compute Kingdom</title>
 
   <style>
@@ -73,6 +82,11 @@
       transition:
         transform 0.2s ease,
         filter 0.2s ease;
+
+      /*
+        포탄보다 왕국을 앞쪽에 표시
+      */
+      z-index: 5;
     }
 
     .kingdom:hover {
@@ -86,7 +100,9 @@
 
     /* ========================================
        CASTLE
-       🏰 전체 Compute 규모
+
+       🏰 = 전체 Compute 규모
+
        Tier 1 ~ Tier 3
     ======================================== */
 
@@ -103,8 +119,6 @@
       user-select: none;
     }
 
-
-    /* 기본 타워 */
 
     .tower {
       position: relative;
@@ -196,16 +210,15 @@
 
 
     /* ========================================
-       ★ V0.4 KINGDOM STATS
+       KINGDOM STATS
 
-       ⚡ POWER
-          데이터센터 전력 규모
+       ⚡ = 전력 규모
 
-       👤 ACCELERATORS
-          GPU / TPU 등 가속기 수량
+       👤 = GPU / TPU 등
+            AI 가속기 수량
 
-       ⚔️ PERFORMANCE
-          가속기 세대 / 연산 성능
+       ⚔️ = GPU / TPU 세대 및
+            가속기 성능
 
        모두 Tier 1 ~ Tier 3
     ======================================== */
@@ -230,6 +243,58 @@
 
     .stat-row {
       white-space: nowrap;
+    }
+
+
+    /* ========================================
+       ★ V0.5 BATTLE SYSTEM
+
+       ⚫ = 회사 사이를 날아가는 포탄
+
+       현재는 단순 시각화 테스트.
+
+       실제 시장 점유율이나 공격력을
+       의미하지 않음.
+    ======================================== */
+
+    #battle-layer {
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 100%;
+      height: 100%;
+
+      /*
+        클릭을 방해하지 않도록 설정
+      */
+      pointer-events: none;
+
+      /*
+        왕국보다 뒤쪽
+      */
+      z-index: 2;
+    }
+
+
+    .cannonball {
+      position: absolute;
+
+      width: 11px;
+      height: 11px;
+
+      background: #171717;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.25);
+
+      /*
+        JS에서 좌표를 계속 변경
+      */
+      transform: translate(-50%, -50%);
     }
 
 
@@ -288,14 +353,13 @@
       line-height: 1.7;
 
       color: #666;
+
+      z-index: 10;
     }
 
 
     /* ========================================
-       ★ V0.4 CLICK INFO PANEL
-
-       회사를 클릭하면
-       각 지표의 의미를 설명
+       CLICK INFO PANEL
     ======================================== */
 
     #info {
@@ -438,6 +502,16 @@
 
 
   <!-- ========================================
+       ★ V0.5 BATTLE LAYER
+
+       포탄은 여기에 자동 생성됨
+  ======================================== -->
+
+  <div id="battle-layer"></div>
+
+
+
+  <!-- ========================================
        LEGEND
   ======================================== -->
 
@@ -447,7 +521,8 @@
     ⚡ Power = Energy Capacity<br>
     👤 People = Accelerator Count<br>
     ⚔️ Swords = Accelerator Performance<br>
-    Prototype V0.4
+    ⚫ Cannonball = Competition<br>
+    Prototype V0.5
 
   </div>
 
@@ -456,7 +531,7 @@
   <!-- ========================================
        GOOGLE
 
-       ★ 현재는 테스트용 임시 데이터
+       ★ 테스트용 임시 데이터
 
        Compute      = Tier 3
        Power        = Tier 3
@@ -510,13 +585,6 @@
 
   <!-- ========================================
        AWS
-
-       ★ 현재는 테스트용 임시 데이터
-
-       Compute      = Tier 3
-       Power        = Tier 3
-       Accelerators = Tier 3
-       Performance  = Tier 2
   ======================================== -->
 
   <div
@@ -565,13 +633,6 @@
 
   <!-- ========================================
        xAI
-
-       ★ 현재는 테스트용 임시 데이터
-
-       Compute      = Tier 2
-       Power        = Tier 2
-       Accelerators = Tier 3
-       Performance  = Tier 3
   ======================================== -->
 
   <div
@@ -619,13 +680,6 @@
 
   <!-- ========================================
        META
-
-       ★ 현재는 테스트용 임시 데이터
-
-       Compute      = Tier 2
-       Power        = Tier 2
-       Accelerators = Tier 2
-       Performance  = Tier 2
   ======================================== -->
 
   <div
@@ -673,13 +727,6 @@
 
   <!-- ========================================
        MICROSOFT
-
-       ★ 현재는 테스트용 임시 데이터
-
-       Compute      = Tier 1
-       Power        = Tier 2
-       Accelerators = Tier 2
-       Performance  = Tier 3
   ======================================== -->
 
   <div
@@ -726,13 +773,6 @@
 
   <!-- ========================================
        ORACLE
-
-       ★ 현재는 테스트용 임시 데이터
-
-       Compute      = Tier 1
-       Power        = Tier 1
-       Accelerators = Tier 2
-       Performance  = Tier 2
   ======================================== -->
 
   <div
@@ -778,7 +818,7 @@
 
 
   <!-- ========================================
-       ★ CLICK DETAIL PANEL
+       CLICK DETAIL PANEL
   ======================================== -->
 
   <div id="info">
@@ -855,7 +895,7 @@
 
 <footer>
 
-  Compute Kingdom • Prototype V0.4
+  Compute Kingdom • Prototype V0.5
 
 </footer>
 
@@ -863,12 +903,9 @@
 
 <script>
 
-  /* ========================================
-     ★ V0.4 CLICK SYSTEM
 
-     회사를 클릭하면
-     data-xxxx 값을 읽어서
-     상세창에 표시한다.
+  /* ========================================
+     CLICK SYSTEM
   ======================================== */
 
 
@@ -885,42 +922,30 @@
     kingdom.addEventListener("click", () => {
 
 
-      /* 회사 이름 */
-
       document.getElementById("info-company")
         .textContent =
         kingdom.dataset.company;
 
-
-      /* 🏰 COMPUTE */
 
       document.getElementById("info-compute")
         .textContent =
         "Tier " + kingdom.dataset.compute;
 
 
-      /* ⚡ POWER */
-
       document.getElementById("info-power")
         .textContent =
         "Tier " + kingdom.dataset.power;
 
-
-      /* 👤 ACCELERATOR COUNT */
 
       document.getElementById("info-accelerators")
         .textContent =
         "Tier " + kingdom.dataset.accelerators;
 
 
-      /* ⚔️ ACCELERATOR PERFORMANCE */
-
       document.getElementById("info-performance")
         .textContent =
         "Tier " + kingdom.dataset.performance;
 
-
-      /* 상세창 표시 */
 
       info.style.display =
         "block";
@@ -928,6 +953,233 @@
     });
 
   });
+
+
+
+  /* ========================================
+     ★ V0.5 BATTLE SYSTEM
+
+     회사 A → 회사 B 사이로
+     검은 포탄 하나를 직선 이동시킨다.
+
+     포물선 없음.
+     궤적 없음.
+     폭발 없음.
+
+     현재는 단순 프로토타입.
+  ======================================== */
+
+
+  const battleLayer =
+    document.getElementById("battle-layer");
+
+
+  /*
+    현재 전투 연결 관계.
+
+    나중에는 이 부분도
+    데이터로 자동 생성 가능.
+  */
+
+  const battles = [
+
+    ["google", "xai"],
+    ["xai", "google"],
+
+    ["aws", "google"],
+    ["google", "aws"],
+
+    ["meta", "oracle"],
+    ["oracle", "meta"],
+
+    ["microsoft", "meta"],
+    ["meta", "microsoft"]
+
+  ];
+
+
+
+  /*
+    포탄 하나 생성
+  */
+
+  function createCannonball(startID, endID, delay) {
+
+
+    const ball =
+      document.createElement("div");
+
+
+    ball.className =
+      "cannonball";
+
+
+    battleLayer.appendChild(ball);
+
+
+
+    /*
+      0 ~ 1 사이의 이동 진행률
+    */
+
+    let progress = 0;
+
+
+    /*
+      포탄마다 출발 시간을 조금씩 다르게
+    */
+
+    let startTime =
+      performance.now() + delay;
+
+
+
+    function move(currentTime) {
+
+
+      if (currentTime < startTime) {
+
+        requestAnimationFrame(move);
+
+        return;
+
+      }
+
+
+      const start =
+        document.getElementById(startID);
+
+
+      const end =
+        document.getElementById(endID);
+
+
+      const world =
+        document.getElementById("world");
+
+
+      const worldRect =
+        world.getBoundingClientRect();
+
+
+      const startRect =
+        start.getBoundingClientRect();
+
+
+      const endRect =
+        end.getBoundingClientRect();
+
+
+
+      /*
+        각 왕국의 중심 위치 계산
+      */
+
+      const startX =
+        startRect.left
+        - worldRect.left
+        + startRect.width / 2;
+
+
+      const startY =
+        startRect.top
+        - worldRect.top
+        + 45;
+
+
+      const endX =
+        endRect.left
+        - worldRect.left
+        + endRect.width / 2;
+
+
+      const endY =
+        endRect.top
+        - worldRect.top
+        + 45;
+
+
+
+      /*
+        이동 속도
+
+        숫자가 작을수록 느림
+      */
+
+      progress += 0.004;
+
+
+
+      /*
+        직선 보간
+
+        A 위치 → B 위치
+      */
+
+      const x =
+        startX
+        + (endX - startX) * progress;
+
+
+      const y =
+        startY
+        + (endY - startY) * progress;
+
+
+
+      ball.style.left =
+        x + "px";
+
+
+      ball.style.top =
+        y + "px";
+
+
+
+      /*
+        목적지 도착 시
+        다시 출발점으로 돌아감
+      */
+
+      if (progress >= 1) {
+
+        progress = 0;
+
+        startTime =
+          currentTime + 800;
+
+      }
+
+
+      requestAnimationFrame(move);
+
+    }
+
+
+    requestAnimationFrame(move);
+
+  }
+
+
+
+  /*
+    각 전투 관계마다
+    포탄 생성
+  */
+
+  battles.forEach((battle, index) => {
+
+    createCannonball(
+
+      battle[0],
+      battle[1],
+
+      index * 350
+
+    );
+
+  });
+
 
 </script>
 
