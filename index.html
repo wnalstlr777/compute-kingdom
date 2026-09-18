@@ -44,7 +44,7 @@
 
       width: calc(100% - 40px);
       max-width: 1100px;
-      height: 650px;
+      height: 700px;
 
       margin: 20px auto;
 
@@ -86,7 +86,8 @@
 
     /* ========================================
        CASTLE
-       Compute 규모를 표현
+       🏰 전체 Compute 규모
+       Tier 1 ~ Tier 3
     ======================================== */
 
     .castle {
@@ -195,30 +196,40 @@
 
 
     /* ========================================
-       ★ V0.3 POWER SYSTEM
-       전력 규모를 번개 개수로 표현
+       ★ V0.4 KINGDOM STATS
+
+       ⚡ POWER
+          데이터센터 전력 규모
+
+       👤 ACCELERATORS
+          GPU / TPU 등 가속기 수량
+
+       ⚔️ PERFORMANCE
+          가속기 세대 / 연산 성능
+
+       모두 Tier 1 ~ Tier 3
     ======================================== */
 
-    .power {
-      margin-top: 6px;
+    .stats {
+      margin-top: 7px;
 
-      min-height: 24px;
+      min-width: 130px;
 
-      font-size: 20px;
+      padding: 6px 9px;
 
-      letter-spacing: 2px;
+      background: rgba(255,255,255,0.55);
+
+      border-radius: 9px;
+
+      font-size: 15px;
+
+      line-height: 1.5;
 
       user-select: none;
     }
 
-    .power-label {
-      margin-top: 2px;
-
-      font-size: 9px;
-
-      color: #777;
-
-      letter-spacing: 1px;
+    .stat-row {
+      white-space: nowrap;
     }
 
 
@@ -232,73 +243,28 @@
     }
 
     #aws {
-      left: 25%;
-      top: 36%;
+      left: 24%;
+      top: 38%;
     }
 
     #xai {
-      left: 75%;
-      top: 36%;
+      left: 76%;
+      top: 38%;
     }
 
     #meta {
       left: 50%;
-      top: 56%;
+      top: 58%;
     }
 
     #microsoft {
-      left: 24%;
-      top: 78%;
+      left: 23%;
+      top: 80%;
     }
 
     #oracle {
-      left: 76%;
-      top: 78%;
-    }
-
-
-    /* ========================================
-       INFO PANEL
-    ======================================== */
-
-    #info {
-      position: absolute;
-
-      left: 50%;
-      bottom: 18px;
-
-      transform: translateX(-50%);
-
-      width: 310px;
-
-      padding: 18px;
-
-      background: rgba(255,255,255,0.96);
-
-      border: 1px solid rgba(0,0,0,0.06);
-
-      border-radius: 14px;
-
-      box-shadow:
-        0 8px 25px rgba(0,0,0,0.12);
-
-      display: none;
-
-      z-index: 20;
-    }
-
-    #info h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-
-    #info p {
-      margin: 5px 0;
-      font-size: 13px;
-    }
-
-    .status {
-      color: #888;
+      left: 77%;
+      top: 80%;
     }
 
 
@@ -312,16 +278,85 @@
       right: 18px;
       top: 18px;
 
-      padding: 10px 13px;
+      padding: 11px 14px;
 
-      background: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.78);
 
       border-radius: 10px;
 
       font-size: 11px;
-      line-height: 1.6;
+      line-height: 1.7;
 
       color: #666;
+    }
+
+
+    /* ========================================
+       ★ V0.4 CLICK INFO PANEL
+
+       회사를 클릭하면
+       각 지표의 의미를 설명
+    ======================================== */
+
+    #info {
+      position: absolute;
+
+      left: 50%;
+      bottom: 18px;
+
+      transform: translateX(-50%);
+
+      width: 340px;
+
+      padding: 18px;
+
+      background: rgba(255,255,255,0.97);
+
+      border: 1px solid rgba(0,0,0,0.06);
+
+      border-radius: 14px;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,0.14);
+
+      display: none;
+
+      z-index: 20;
+    }
+
+    #info h2 {
+      margin: 0 0 13px;
+
+      font-size: 19px;
+    }
+
+    .info-stat {
+      margin: 10px 0;
+    }
+
+    .info-title {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .info-description {
+      margin-top: 2px;
+
+      font-size: 11px;
+
+      color: #777;
+    }
+
+    .prototype-warning {
+      margin-top: 14px;
+
+      padding-top: 10px;
+
+      border-top: 1px solid #eee;
+
+      font-size: 10px;
+
+      color: #999;
     }
 
 
@@ -343,27 +378,39 @@
     @media (max-width: 600px) {
 
       #world {
-        height: 700px;
+        height: 800px;
       }
 
       .legend {
         display: none;
       }
 
+      #google {
+        top: 14%;
+      }
+
       #aws {
         left: 23%;
+        top: 35%;
       }
 
       #xai {
         left: 77%;
+        top: 35%;
+      }
+
+      #meta {
+        top: 56%;
       }
 
       #microsoft {
         left: 23%;
+        top: 78%;
       }
 
       #oracle {
         left: 77%;
+        top: 78%;
       }
 
     }
@@ -398,7 +445,9 @@
 
     🏰 Castle = Compute<br>
     ⚡ Power = Energy Capacity<br>
-    Prototype V0.3
+    👤 People = Accelerator Count<br>
+    ⚔️ Swords = Accelerator Performance<br>
+    Prototype V0.4
 
   </div>
 
@@ -406,8 +455,13 @@
 
   <!-- ========================================
        GOOGLE
-       Compute : Tier 3
-       Power   : Tier 3
+
+       ★ 현재는 테스트용 임시 데이터
+
+       Compute      = Tier 3
+       Power        = Tier 3
+       Accelerators = Tier 3
+       Performance  = Tier 3
   ======================================== -->
 
   <div
@@ -415,16 +469,17 @@
     id="google"
 
     data-company="Google"
-    data-compute-tier="3"
+
+    data-compute="3"
     data-power="3"
+    data-accelerators="3"
+    data-performance="3"
   >
 
     <div class="castle">
 
       <div class="tower"></div>
-
       <div class="tower main"></div>
-
       <div class="tower"></div>
 
     </div>
@@ -433,13 +488,20 @@
       GOOGLE
     </div>
 
-    <!-- ★ POWER -->
-    <div class="power">
-      ⚡⚡⚡
-    </div>
+    <div class="stats">
 
-    <div class="power-label">
-      POWER
+      <div class="stat-row">
+        ⚡ ⚡⚡⚡
+      </div>
+
+      <div class="stat-row">
+        👤 👤👤👤
+      </div>
+
+      <div class="stat-row">
+        ⚔️ ⚔️⚔️⚔️
+      </div>
+
     </div>
 
   </div>
@@ -448,8 +510,13 @@
 
   <!-- ========================================
        AWS
-       Compute : Tier 3
-       Power   : Tier 3
+
+       ★ 현재는 테스트용 임시 데이터
+
+       Compute      = Tier 3
+       Power        = Tier 3
+       Accelerators = Tier 3
+       Performance  = Tier 2
   ======================================== -->
 
   <div
@@ -457,16 +524,17 @@
     id="aws"
 
     data-company="AWS"
-    data-compute-tier="3"
+
+    data-compute="3"
     data-power="3"
+    data-accelerators="3"
+    data-performance="2"
   >
 
     <div class="castle">
 
       <div class="tower"></div>
-
       <div class="tower main"></div>
-
       <div class="tower"></div>
 
     </div>
@@ -475,13 +543,20 @@
       AWS
     </div>
 
-    <!-- ★ POWER -->
-    <div class="power">
-      ⚡⚡⚡
-    </div>
+    <div class="stats">
 
-    <div class="power-label">
-      POWER
+      <div class="stat-row">
+        ⚡ ⚡⚡⚡
+      </div>
+
+      <div class="stat-row">
+        👤 👤👤👤
+      </div>
+
+      <div class="stat-row">
+        ⚔️ ⚔️⚔️
+      </div>
+
     </div>
 
   </div>
@@ -490,8 +565,13 @@
 
   <!-- ========================================
        xAI
-       Compute : Tier 2
-       Power   : Tier 2
+
+       ★ 현재는 테스트용 임시 데이터
+
+       Compute      = Tier 2
+       Power        = Tier 2
+       Accelerators = Tier 3
+       Performance  = Tier 3
   ======================================== -->
 
   <div
@@ -499,14 +579,16 @@
     id="xai"
 
     data-company="xAI"
-    data-compute-tier="2"
+
+    data-compute="2"
     data-power="2"
+    data-accelerators="3"
+    data-performance="3"
   >
 
     <div class="castle">
 
       <div class="tower main"></div>
-
       <div class="tower"></div>
 
     </div>
@@ -515,13 +597,20 @@
       xAI
     </div>
 
-    <!-- ★ POWER -->
-    <div class="power">
-      ⚡⚡
-    </div>
+    <div class="stats">
 
-    <div class="power-label">
-      POWER
+      <div class="stat-row">
+        ⚡ ⚡⚡
+      </div>
+
+      <div class="stat-row">
+        👤 👤👤👤
+      </div>
+
+      <div class="stat-row">
+        ⚔️ ⚔️⚔️⚔️
+      </div>
+
     </div>
 
   </div>
@@ -530,8 +619,13 @@
 
   <!-- ========================================
        META
-       Compute : Tier 2
-       Power   : Tier 2
+
+       ★ 현재는 테스트용 임시 데이터
+
+       Compute      = Tier 2
+       Power        = Tier 2
+       Accelerators = Tier 2
+       Performance  = Tier 2
   ======================================== -->
 
   <div
@@ -539,14 +633,16 @@
     id="meta"
 
     data-company="Meta"
-    data-compute-tier="2"
+
+    data-compute="2"
     data-power="2"
+    data-accelerators="2"
+    data-performance="2"
   >
 
     <div class="castle">
 
       <div class="tower main"></div>
-
       <div class="tower"></div>
 
     </div>
@@ -555,13 +651,20 @@
       META
     </div>
 
-    <!-- ★ POWER -->
-    <div class="power">
-      ⚡⚡
-    </div>
+    <div class="stats">
 
-    <div class="power-label">
-      POWER
+      <div class="stat-row">
+        ⚡ ⚡⚡
+      </div>
+
+      <div class="stat-row">
+        👤 👤👤
+      </div>
+
+      <div class="stat-row">
+        ⚔️ ⚔️⚔️
+      </div>
+
     </div>
 
   </div>
@@ -570,8 +673,13 @@
 
   <!-- ========================================
        MICROSOFT
-       Compute : Tier 1
-       Power   : Tier 2
+
+       ★ 현재는 테스트용 임시 데이터
+
+       Compute      = Tier 1
+       Power        = Tier 2
+       Accelerators = Tier 2
+       Performance  = Tier 3
   ======================================== -->
 
   <div
@@ -579,8 +687,11 @@
     id="microsoft"
 
     data-company="Microsoft"
-    data-compute-tier="1"
+
+    data-compute="1"
     data-power="2"
+    data-accelerators="2"
+    data-performance="3"
   >
 
     <div class="castle">
@@ -593,13 +704,20 @@
       MICROSOFT
     </div>
 
-    <!-- ★ POWER -->
-    <div class="power">
-      ⚡⚡
-    </div>
+    <div class="stats">
 
-    <div class="power-label">
-      POWER
+      <div class="stat-row">
+        ⚡ ⚡⚡
+      </div>
+
+      <div class="stat-row">
+        👤 👤👤
+      </div>
+
+      <div class="stat-row">
+        ⚔️ ⚔️⚔️⚔️
+      </div>
+
     </div>
 
   </div>
@@ -608,8 +726,13 @@
 
   <!-- ========================================
        ORACLE
-       Compute : Tier 1
-       Power   : Tier 1
+
+       ★ 현재는 테스트용 임시 데이터
+
+       Compute      = Tier 1
+       Power        = Tier 1
+       Accelerators = Tier 2
+       Performance  = Tier 2
   ======================================== -->
 
   <div
@@ -617,8 +740,11 @@
     id="oracle"
 
     data-company="Oracle"
-    data-compute-tier="1"
+
+    data-compute="1"
     data-power="1"
+    data-accelerators="2"
+    data-performance="2"
   >
 
     <div class="castle">
@@ -631,13 +757,20 @@
       ORACLE
     </div>
 
-    <!-- ★ POWER -->
-    <div class="power">
-      ⚡
-    </div>
+    <div class="stats">
 
-    <div class="power-label">
-      POWER
+      <div class="stat-row">
+        ⚡ ⚡
+      </div>
+
+      <div class="stat-row">
+        👤 👤👤
+      </div>
+
+      <div class="stat-row">
+        ⚔️ ⚔️⚔️
+      </div>
+
     </div>
 
   </div>
@@ -645,26 +778,73 @@
 
 
   <!-- ========================================
-       DETAIL INFO
+       ★ CLICK DETAIL PANEL
   ======================================== -->
 
   <div id="info">
 
     <h2 id="info-company"></h2>
 
-    <p>
-      Compute Tier :
-      <strong id="info-compute"></strong>
-    </p>
 
-    <p>
-      Power Tier :
-      <strong id="info-power"></strong>
-    </p>
+    <div class="info-stat">
 
-    <p class="status">
-      ⚠ Prototype data
-    </p>
+      <div class="info-title">
+        🏰 Compute :
+        <span id="info-compute"></span>
+      </div>
+
+      <div class="info-description">
+        전체 AI 연산 인프라 규모
+      </div>
+
+    </div>
+
+
+    <div class="info-stat">
+
+      <div class="info-title">
+        ⚡ Power :
+        <span id="info-power"></span>
+      </div>
+
+      <div class="info-description">
+        데이터센터 전력 공급 규모
+      </div>
+
+    </div>
+
+
+    <div class="info-stat">
+
+      <div class="info-title">
+        👤 Accelerators :
+        <span id="info-accelerators"></span>
+      </div>
+
+      <div class="info-description">
+        GPU · TPU 등 AI 가속기 수량
+      </div>
+
+    </div>
+
+
+    <div class="info-stat">
+
+      <div class="info-title">
+        ⚔️ Performance :
+        <span id="info-performance"></span>
+      </div>
+
+      <div class="info-description">
+        보유 가속기의 세대 · 연산 성능
+      </div>
+
+    </div>
+
+
+    <div class="prototype-warning">
+      ⚠ Prototype data — 실제 데이터가 아닌 시각화 테스트용 임시값입니다.
+    </div>
 
   </div>
 
@@ -675,7 +855,7 @@
 
 <footer>
 
-  Compute Kingdom • Prototype V0.3
+  Compute Kingdom • Prototype V0.4
 
 </footer>
 
@@ -683,37 +863,64 @@
 
 <script>
 
+  /* ========================================
+     ★ V0.4 CLICK SYSTEM
+
+     회사를 클릭하면
+     data-xxxx 값을 읽어서
+     상세창에 표시한다.
+  ======================================== */
+
+
   const kingdoms =
     document.querySelectorAll(".kingdom");
 
+
   const info =
     document.getElementById("info");
-
-  const infoCompany =
-    document.getElementById("info-company");
-
-  const infoCompute =
-    document.getElementById("info-compute");
-
-  const infoPower =
-    document.getElementById("info-power");
 
 
   kingdoms.forEach((kingdom) => {
 
     kingdom.addEventListener("click", () => {
 
-      const powerLevel =
-        Number(kingdom.dataset.power);
 
-      infoCompany.textContent =
+      /* 회사 이름 */
+
+      document.getElementById("info-company")
+        .textContent =
         kingdom.dataset.company;
 
-      infoCompute.textContent =
-        "Tier " + kingdom.dataset.computeTier;
 
-      infoPower.textContent =
-        "⚡".repeat(powerLevel);
+      /* 🏰 COMPUTE */
+
+      document.getElementById("info-compute")
+        .textContent =
+        "Tier " + kingdom.dataset.compute;
+
+
+      /* ⚡ POWER */
+
+      document.getElementById("info-power")
+        .textContent =
+        "Tier " + kingdom.dataset.power;
+
+
+      /* 👤 ACCELERATOR COUNT */
+
+      document.getElementById("info-accelerators")
+        .textContent =
+        "Tier " + kingdom.dataset.accelerators;
+
+
+      /* ⚔️ ACCELERATOR PERFORMANCE */
+
+      document.getElementById("info-performance")
+        .textContent =
+        "Tier " + kingdom.dataset.performance;
+
+
+      /* 상세창 표시 */
 
       info.style.display =
         "block";
