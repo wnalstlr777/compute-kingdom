@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Compute Kingdom</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f2;
+      color: #222;
+    }
+
+    header {
+      padding: 24px 30px 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    #world {
+      position: relative;
+      width: calc(100% - 40px);
+      max-width: 1100px;
+      height: 650px;
+
+      margin: 20px auto;
+
+      background: #e9ecdf;
+
+      border: 1px solid #ddd;
+      border-radius: 25px;
+
+      overflow: hidden;
+    }
+
+    .kingdom {
+      position: absolute;
+      text-align: center;
+
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+    }
+
+    .kingdom:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      filter: brightness(1.05);
+    }
+
+    .castle {
+      line-height: 1;
+      user-select: none;
+    }
+
+    .company {
+      margin-top: 7px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .compute-bar {
+      width: 80px;
+      height: 6px;
+
+      margin: 7px auto 0;
+
+      background: rgba(0,0,0,0.12);
+      border-radius: 10px;
+
+      overflow: hidden;
+    }
+
+    .compute-fill {
+      height: 100%;
+      background: #555;
+      border-radius: 10px;
+    }
+
+    /* 회사 위치 */
+
+    #google {
+      left: 50%;
+      top: 16%;
+    }
+
+    #aws {
+      left: 25%;
+      top: 34%;
+    }
+
+    #xai {
+      left: 75%;
+      top: 34%;
+    }
+
+    #meta {
+      left: 50%;
+      top: 54%;
+    }
+
+    #microsoft {
+      left: 24%;
+      top: 76%;
+    }
+
+    #oracle {
+      left: 76%;
+      top: 76%;
+    }
+
+    /* 정보창 */
+
+    #info {
+      position: absolute;
+
+      left: 50%;
+      bottom: 20px;
+
+      transform: translateX(-50%);
+
+      width: 300px;
+
+      padding: 18px;
+
+      background: rgba(255,255,255,0.94);
+
+      border-radius: 14px;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,0.12);
+
+      display: none;
+    }
+
+    #info h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    #info p {
+      margin: 5px 0;
+      font-size: 13px;
+    }
+
+    .status {
+      color: #777;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #999;
+      padding: 10px 0 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>🏰 Compute Kingdom</h1>
+
+  <div class="subtitle">
+    Visualizing the global AI compute race
+  </div>
+
+</header>
+
+
+<div id="world">
+
+  <!-- GOOGLE -->
+
+  <div
+    class="kingdom"
+    id="google"
+    data-company="Google"
+    data-compute="100"
+    data-future="25"
+  >
+
+    <div class="castle" style="font-size:80px;">
+      🏰
+    </div>
+
+    <div class="company">
+      GOOGLE
+    </div>
+
+    <div class="compute-bar">
+      <div
+        class="compute-fill"
+        style="width:100%">
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- AWS -->
+
+  <div
+    class="kingdom"
+    id="aws"
+    data-company="AWS"
+    data-compute="85"
+    data-future="40"
+  >
+
+    <div class="castle" style="font-size:68px;">
+      🏰
+    </div>
+
+    <div class="company">
+      AWS
+    </div>
+
+    <div class="compute-bar">
+      <div
+        class="compute-fill"
+        style="width:85%">
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- xAI -->
+
+  <div
+    class="kingdom"
+    id="xai"
+    data-company="xAI"
+    data-compute="70"
+    data-future="50"
+  >
+
+    <div class="castle" style="font-size:60px;">
+      🏰
+    </div>
+
+    <div class="company">
+      xAI
+    </div>
+
+    <div class="compute-bar">
+      <div
+        class="compute-fill"
+        style="width:70%">
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- META -->
+
+  <div
+    class="kingdom"
+    id="meta"
+    data-company="Meta"
+    data-compute="65"
+    data-future="45"
+  >
+
+    <div class="castle" style="font-size:57px;">
+      🏰
+    </div>
+
+    <div class="company">
+      META
+    </div>
+
+    <div class="compute-bar">
+      <div
+        class="compute-fill"
+        style="width:65%">
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- MICROSOFT -->
+
+  <div
+    class="kingdom"
+    id="microsoft"
+    data-company="Microsoft"
+    data-compute="60"
+    data-future="30"
+  >
+
+    <div class="castle" style="font-size:54px;">
+      🏰
+    </div>
+
+    <div class="company">
+      MICROSOFT
+    </div>
+
+    <div class="compute-bar">
+      <div
+        class="compute-fill"
+        style="width:60%">
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ORACLE -->
+
+  <div
+    class="kingdom"
+    id="oracle"
+    data-company="Oracle"
+    data-compute="50"
+    data-future="35"
+  >
+
+    <div class="castle" style="font-size:50px;">
+      🏰
+    </div>
+
+    <div class="company">
+      ORACLE
+    </div>
+
+    <div class="compute-bar">
+      <div
+        class="compute-fill"
+        style="width:50%">
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- INFO PANEL -->
+
+  <div id="info">
+
+    <h2 id="info-company"></h2>
+
+    <p>
+      Current Compute :
+      <strong id="info-compute"></strong>
+    </p>
+
+    <p>
+      Future Compute :
+      <strong id="info-future"></strong>
+    </p>
+
+    <p class="status">
+      Prototype data
+    </p>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  Compute Kingdom • Prototype V0.1
+
+</footer>
+
+
+<script>
+
+  const kingdoms =
+    document.querySelectorAll(".kingdom");
+
+  const info =
+    document.getElementById("info");
+
+  const company =
+    document.getElementById("info-company");
+
+  const compute =
+    document.getElementById("info-compute");
+
+  const future =
+    document.getElementById("info-future");
+
+
+  kingdoms.forEach((kingdom) => {
+
+    kingdom.addEventListener(
+      "click",
+      () => {
+
+        company.textContent =
+          kingdom.dataset.company;
+
+        compute.textContent =
+          kingdom.dataset.compute;
+
+        future.textContent =
+          kingdom.dataset.future;
+
+        info.style.display =
+          "block";
+
+      }
+    );
+
+  });
+
+</script>
+
+</body>
+</html>
