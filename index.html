@@ -7,6 +7,7 @@
   <title>Compute Kingdom</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -33,6 +34,11 @@
       font-size: 13px;
     }
 
+
+    /* ========================================
+       WORLD
+    ======================================== */
+
     #world {
       position: relative;
 
@@ -51,9 +57,9 @@
     }
 
 
-    /* =========================
+    /* ========================================
        KINGDOM
-    ========================= */
+    ======================================== */
 
     .kingdom {
       position: absolute;
@@ -78,9 +84,10 @@
     }
 
 
-    /* =========================
+    /* ========================================
        CASTLE
-    ========================= */
+       Compute 규모를 표현
+    ======================================== */
 
     .castle {
       display: flex;
@@ -155,7 +162,7 @@
     }
 
 
-    /* 가운데 메인 타워 */
+    /* 메인 타워 */
 
     .tower.main {
       width: 42px;
@@ -173,9 +180,9 @@
     }
 
 
-    /* =========================
+    /* ========================================
        COMPANY NAME
-    ========================= */
+    ======================================== */
 
     .company {
       margin-top: 8px;
@@ -187,35 +194,37 @@
     }
 
 
-    /* =========================
-       COMPUTE BAR
-    ========================= */
+    /* ========================================
+       ★ V0.3 POWER SYSTEM
+       전력 규모를 번개 개수로 표현
+    ======================================== */
 
-    .compute-bar {
-      width: 90px;
-      height: 6px;
+    .power {
+      margin-top: 6px;
 
-      margin: 7px auto 0;
+      min-height: 24px;
 
-      background: rgba(0,0,0,0.12);
+      font-size: 20px;
 
-      border-radius: 10px;
+      letter-spacing: 2px;
 
-      overflow: hidden;
+      user-select: none;
     }
 
-    .compute-fill {
-      height: 100%;
+    .power-label {
+      margin-top: 2px;
 
-      background: #555;
+      font-size: 9px;
 
-      border-radius: 10px;
+      color: #777;
+
+      letter-spacing: 1px;
     }
 
 
-    /* =========================
+    /* ========================================
        COMPANY POSITION
-    ========================= */
+    ======================================== */
 
     #google {
       left: 50%;
@@ -224,33 +233,33 @@
 
     #aws {
       left: 25%;
-      top: 35%;
+      top: 36%;
     }
 
     #xai {
       left: 75%;
-      top: 35%;
+      top: 36%;
     }
 
     #meta {
       left: 50%;
-      top: 55%;
+      top: 56%;
     }
 
     #microsoft {
       left: 24%;
-      top: 77%;
+      top: 78%;
     }
 
     #oracle {
       left: 76%;
-      top: 77%;
+      top: 78%;
     }
 
 
-    /* =========================
+    /* ========================================
        INFO PANEL
-    ========================= */
+    ======================================== */
 
     #info {
       position: absolute;
@@ -280,13 +289,11 @@
 
     #info h2 {
       margin: 0 0 10px;
-
       font-size: 18px;
     }
 
     #info p {
       margin: 5px 0;
-
       font-size: 13px;
     }
 
@@ -295,9 +302,9 @@
     }
 
 
-    /* =========================
+    /* ========================================
        LEGEND
-    ========================= */
+    ======================================== */
 
     .legend {
       position: absolute;
@@ -307,11 +314,12 @@
 
       padding: 10px 13px;
 
-      background: rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.75);
 
       border-radius: 10px;
 
       font-size: 11px;
+      line-height: 1.6;
 
       color: #666;
     }
@@ -328,9 +336,9 @@
     }
 
 
-    /* =========================
+    /* ========================================
        MOBILE
-    ========================= */
+    ======================================== */
 
     @media (max-width: 600px) {
 
@@ -369,9 +377,7 @@
 
 <header>
 
-  <h1>
-    🏰 Compute Kingdom
-  </h1>
+  <h1>🏰 Compute Kingdom</h1>
 
   <div class="subtitle">
     Visualizing the global AI compute race
@@ -384,30 +390,33 @@
 <div id="world">
 
 
-  <!-- LEGEND -->
+  <!-- ========================================
+       LEGEND
+  ======================================== -->
 
   <div class="legend">
 
-    Castle size = Compute Tier<br>
-    Prototype V0.2
+    🏰 Castle = Compute<br>
+    ⚡ Power = Energy Capacity<br>
+    Prototype V0.3
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- ========================================
        GOOGLE
-       LARGE : 3 ROOFS
-  ========================== -->
+       Compute : Tier 3
+       Power   : Tier 3
+  ======================================== -->
 
   <div
     class="kingdom"
     id="google"
 
     data-company="Google"
-    data-tier="Large"
-    data-compute="100"
-    data-future="25"
+    data-compute-tier="3"
+    data-power="3"
   >
 
     <div class="castle">
@@ -424,32 +433,32 @@
       GOOGLE
     </div>
 
-    <div class="compute-bar">
+    <!-- ★ POWER -->
+    <div class="power">
+      ⚡⚡⚡
+    </div>
 
-      <div
-        class="compute-fill"
-        style="width:100%">
-      </div>
-
+    <div class="power-label">
+      POWER
     </div>
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- ========================================
        AWS
-       LARGE : 3 ROOFS
-  ========================== -->
+       Compute : Tier 3
+       Power   : Tier 3
+  ======================================== -->
 
   <div
     class="kingdom"
     id="aws"
 
     data-company="AWS"
-    data-tier="Large"
-    data-compute="85"
-    data-future="40"
+    data-compute-tier="3"
+    data-power="3"
   >
 
     <div class="castle">
@@ -466,32 +475,32 @@
       AWS
     </div>
 
-    <div class="compute-bar">
+    <!-- ★ POWER -->
+    <div class="power">
+      ⚡⚡⚡
+    </div>
 
-      <div
-        class="compute-fill"
-        style="width:85%">
-      </div>
-
+    <div class="power-label">
+      POWER
     </div>
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- ========================================
        xAI
-       MEDIUM : 2 ROOFS
-  ========================== -->
+       Compute : Tier 2
+       Power   : Tier 2
+  ======================================== -->
 
   <div
     class="kingdom"
     id="xai"
 
     data-company="xAI"
-    data-tier="Medium"
-    data-compute="70"
-    data-future="50"
+    data-compute-tier="2"
+    data-power="2"
   >
 
     <div class="castle">
@@ -506,32 +515,32 @@
       xAI
     </div>
 
-    <div class="compute-bar">
+    <!-- ★ POWER -->
+    <div class="power">
+      ⚡⚡
+    </div>
 
-      <div
-        class="compute-fill"
-        style="width:70%">
-      </div>
-
+    <div class="power-label">
+      POWER
     </div>
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- ========================================
        META
-       MEDIUM : 2 ROOFS
-  ========================== -->
+       Compute : Tier 2
+       Power   : Tier 2
+  ======================================== -->
 
   <div
     class="kingdom"
     id="meta"
 
     data-company="Meta"
-    data-tier="Medium"
-    data-compute="65"
-    data-future="45"
+    data-compute-tier="2"
+    data-power="2"
   >
 
     <div class="castle">
@@ -546,32 +555,32 @@
       META
     </div>
 
-    <div class="compute-bar">
+    <!-- ★ POWER -->
+    <div class="power">
+      ⚡⚡
+    </div>
 
-      <div
-        class="compute-fill"
-        style="width:65%">
-      </div>
-
+    <div class="power-label">
+      POWER
     </div>
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- ========================================
        MICROSOFT
-       SMALL : 1 ROOF
-  ========================== -->
+       Compute : Tier 1
+       Power   : Tier 2
+  ======================================== -->
 
   <div
     class="kingdom"
     id="microsoft"
 
     data-company="Microsoft"
-    data-tier="Small"
-    data-compute="60"
-    data-future="30"
+    data-compute-tier="1"
+    data-power="2"
   >
 
     <div class="castle">
@@ -584,32 +593,32 @@
       MICROSOFT
     </div>
 
-    <div class="compute-bar">
+    <!-- ★ POWER -->
+    <div class="power">
+      ⚡⚡
+    </div>
 
-      <div
-        class="compute-fill"
-        style="width:60%">
-      </div>
-
+    <div class="power-label">
+      POWER
     </div>
 
   </div>
 
 
 
-  <!-- =========================
+  <!-- ========================================
        ORACLE
-       SMALL : 1 ROOF
-  ========================== -->
+       Compute : Tier 1
+       Power   : Tier 1
+  ======================================== -->
 
   <div
     class="kingdom"
     id="oracle"
 
     data-company="Oracle"
-    data-tier="Small"
-    data-compute="50"
-    data-future="35"
+    data-compute-tier="1"
+    data-power="1"
   >
 
     <div class="castle">
@@ -622,45 +631,39 @@
       ORACLE
     </div>
 
-    <div class="compute-bar">
+    <!-- ★ POWER -->
+    <div class="power">
+      ⚡
+    </div>
 
-      <div
-        class="compute-fill"
-        style="width:50%">
-      </div>
-
+    <div class="power-label">
+      POWER
     </div>
 
   </div>
 
 
 
-  <!-- =========================
-       INFO PANEL
-  ========================== -->
+  <!-- ========================================
+       DETAIL INFO
+  ======================================== -->
 
   <div id="info">
 
-    <h2 id="info-company">
-    </h2>
+    <h2 id="info-company"></h2>
 
     <p>
-      Castle Tier :
-      <strong id="info-tier"></strong>
-    </p>
-
-    <p>
-      Current Compute :
+      Compute Tier :
       <strong id="info-compute"></strong>
     </p>
 
     <p>
-      Future Compute :
-      <strong id="info-future"></strong>
+      Power Tier :
+      <strong id="info-power"></strong>
     </p>
 
     <p class="status">
-      ⚠ Prototype data — not actual compute ranking
+      ⚠ Prototype data
     </p>
 
   </div>
@@ -672,7 +675,7 @@
 
 <footer>
 
-  Compute Kingdom • Prototype V0.2
+  Compute Kingdom • Prototype V0.3
 
 </footer>
 
@@ -683,51 +686,39 @@
   const kingdoms =
     document.querySelectorAll(".kingdom");
 
-
   const info =
     document.getElementById("info");
 
-
-  const company =
+  const infoCompany =
     document.getElementById("info-company");
 
-
-  const tier =
-    document.getElementById("info-tier");
-
-
-  const compute =
+  const infoCompute =
     document.getElementById("info-compute");
 
-
-  const future =
-    document.getElementById("info-future");
-
+  const infoPower =
+    document.getElementById("info-power");
 
 
   kingdoms.forEach((kingdom) => {
 
-    kingdom.addEventListener(
-      "click",
-      () => {
+    kingdom.addEventListener("click", () => {
 
-        company.textContent =
-          kingdom.dataset.company;
+      const powerLevel =
+        Number(kingdom.dataset.power);
 
-        tier.textContent =
-          kingdom.dataset.tier;
+      infoCompany.textContent =
+        kingdom.dataset.company;
 
-        compute.textContent =
-          kingdom.dataset.compute;
+      infoCompute.textContent =
+        "Tier " + kingdom.dataset.computeTier;
 
-        future.textContent =
-          kingdom.dataset.future;
+      infoPower.textContent =
+        "⚡".repeat(powerLevel);
 
-        info.style.display =
-          "block";
+      info.style.display =
+        "block";
 
-      }
-    );
+    });
 
   });
 
