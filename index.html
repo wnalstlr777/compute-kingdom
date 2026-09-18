@@ -1449,6 +1449,51 @@
 
       }
 
+/* ========================================
+   ★ V0.6 EMPTY SPACE CLOSE
+
+   상세창이 열린 상태에서
+   왕국이나 상세창이 아닌
+   빈 공간을 클릭하면 상세창 닫기
+======================================== */
+
+
+document
+  .getElementById("world")
+  .addEventListener("click", (event) => {
+
+
+    /*
+      클릭한 곳이 회사(kingdom) 내부라면
+      아무것도 하지 않음
+    */
+
+    if (event.target.closest(".kingdom")) {
+      return;
+    }
+
+
+    /*
+      클릭한 곳이 상세 정보창 내부라면
+      아무것도 하지 않음
+    */
+
+    if (event.target.closest("#info")) {
+      return;
+    }
+
+
+    /*
+      나머지 빈 공간 클릭
+      → 상세창 닫기
+    */
+
+    info.style.display = "none";
+
+    selectedKingdom = null;
+
+
+  });
 
 
       /*
