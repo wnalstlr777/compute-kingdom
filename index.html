@@ -1,81 +1,123 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
 
   <!-- ========================================
-       ★ V0.5 CACHE CONTROL
-       개발 중 이전 페이지가 캐시에 남는 현상 완화
+       ★ CACHE CONTROL
+       모바일 / PC 캐시 문제 완화
   ======================================== -->
 
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Cache-Control"
+        content="no-cache, no-store, must-revalidate">
+
+  <meta http-equiv="Pragma"
+        content="no-cache">
+
+  <meta http-equiv="Expires"
+        content="0">
+
 
   <title>Compute Kingdom</title>
 
+
   <style>
+
 
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       font-family: Arial, sans-serif;
+
       background: #f5f5f2;
+
       color: #222;
+
     }
+
 
     header {
+
       padding: 24px 30px 10px;
+
     }
+
 
     h1 {
+
       margin: 0;
+
       font-size: 24px;
+
     }
 
+
     .subtitle {
+
       margin-top: 6px;
+
       color: #777;
+
       font-size: 13px;
+
     }
+
 
 
     /* ========================================
        WORLD
     ======================================== */
 
+
     #world {
+
       position: relative;
 
       width: calc(100% - 40px);
+
       max-width: 1100px;
-      height: 700px;
+
+      height: 720px;
 
       margin: 20px auto;
 
       background: #e9ecdf;
 
       border: 1px solid #ddd;
+
       border-radius: 25px;
 
       overflow: hidden;
+
     }
+
 
 
     /* ========================================
        KINGDOM
     ======================================== */
 
+
     .kingdom {
+
       position: absolute;
 
       text-align: center;
 
-      transform: translate(-50%, -50%);
+      transform:
+        translate(-50%, -50%);
 
       cursor: pointer;
 
@@ -83,33 +125,40 @@
         transform 0.2s ease,
         filter 0.2s ease;
 
-      /*
-        포탄보다 왕국을 앞쪽에 표시
-      */
       z-index: 5;
+
     }
 
+
     .kingdom:hover {
+
       transform:
         translate(-50%, -50%)
         scale(1.08);
 
-      filter: brightness(1.04);
+      filter:
+        brightness(1.04);
+
     }
 
 
-    /* ========================================
-       CASTLE
 
-       🏰 = 전체 Compute 규모
+    /* ========================================
+       🏰 CURRENT COMPUTE
+
+       현재 실제 가동 중인
+       Compute 규모
 
        Tier 1 ~ Tier 3
     ======================================== */
 
+
     .castle {
+
       display: flex;
 
       align-items: flex-end;
+
       justify-content: center;
 
       gap: 4px;
@@ -117,171 +166,245 @@
       height: 85px;
 
       user-select: none;
+
     }
 
 
+
     .tower {
+
       position: relative;
 
       width: 34px;
+
       height: 47px;
 
       background: #d8cfbd;
 
-      border: 2px solid #aaa08d;
+      border:
+        2px solid #aaa08d;
 
-      border-radius: 3px 3px 0 0;
+      border-radius:
+        3px 3px 0 0;
+
     }
+
 
 
     /* 빨간 지붕 */
 
+
     .tower::before {
+
       content: "";
 
       position: absolute;
 
       left: 50%;
+
       top: -22px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       width: 0;
+
       height: 0;
 
-      border-left: 21px solid transparent;
-      border-right: 21px solid transparent;
+      border-left:
+        21px solid transparent;
 
-      border-bottom: 23px solid #c94f48;
+      border-right:
+        21px solid transparent;
+
+      border-bottom:
+        23px solid #c94f48;
+
     }
+
 
 
     /* 문 */
 
+
     .tower::after {
+
       content: "";
 
       position: absolute;
 
       width: 9px;
+
       height: 15px;
 
       bottom: 0;
+
       left: 50%;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       background: #554b40;
 
-      border-radius: 5px 5px 0 0;
+      border-radius:
+        5px 5px 0 0;
+
     }
+
 
 
     /* 메인 타워 */
 
+
     .tower.main {
+
       width: 42px;
+
       height: 61px;
 
       background: #e1d8c6;
+
     }
 
+
     .tower.main::before {
+
       border-left-width: 25px;
+
       border-right-width: 25px;
+
       border-bottom-width: 27px;
 
       top: -26px;
+
     }
+
 
 
     /* ========================================
        COMPANY NAME
     ======================================== */
 
+
     .company {
+
       margin-top: 8px;
 
       font-size: 13px;
+
       font-weight: bold;
 
       letter-spacing: 0.5px;
+
     }
 
 
+
     /* ========================================
-       KINGDOM STATS
+       ★ V0.6 MAIN STATS
+
+       첫 화면에서는 핵심 정보만 표시
 
        ⚡ = 전력 규모
 
        👤 = GPU / TPU 등
             AI 가속기 수량
 
-       ⚔️ = GPU / TPU 세대 및
-            가속기 성능
+       🏗️ = 발표 / 건설 중인
+             미래 Compute 규모
 
        모두 Tier 1 ~ Tier 3
+
+       ⚔️ Performance는
+       첫 화면에서 제거하고
+       클릭 상세창에서만 표시
     ======================================== */
 
+
     .stats {
+
       margin-top: 7px;
 
       min-width: 130px;
 
       padding: 6px 9px;
 
-      background: rgba(255,255,255,0.55);
+      background:
+        rgba(255,255,255,0.55);
 
       border-radius: 9px;
 
       font-size: 15px;
 
-      line-height: 1.5;
+      line-height: 1.55;
 
       user-select: none;
+
     }
 
+
     .stat-row {
+
       white-space: nowrap;
+
     }
+
 
 
     /* ========================================
-       ★ V0.5 BATTLE SYSTEM
+       ★ V0.6 FUTURE COMPUTE
 
-       ⚫ = 회사 사이를 날아가는 포탄
+       현재는 🏗️ 아이콘으로 테스트.
 
-       현재는 단순 시각화 테스트.
-
-       실제 시장 점유율이나 공격력을
-       의미하지 않음.
+       나중에는 이 부분을
+       실제 '미완성 성 + 나무 비계'로
+       교체할 예정.
     ======================================== */
 
+
+    .future {
+
+      opacity: 0.72;
+
+    }
+
+
+
+    /* ========================================
+       ★ BATTLE SYSTEM
+
+       ⚫ = 경쟁을 표현하는 포탄
+
+       현재는 실제 경쟁 데이터가 아닌
+       시각화 테스트용 애니메이션
+    ======================================== */
+
+
     #battle-layer {
+
       position: absolute;
 
       left: 0;
+
       top: 0;
 
       width: 100%;
+
       height: 100%;
 
-      /*
-        클릭을 방해하지 않도록 설정
-      */
       pointer-events: none;
 
-      /*
-        왕국보다 뒤쪽
-      */
       z-index: 2;
+
     }
 
 
     .cannonball {
+
       position: absolute;
 
       width: 11px;
+
       height: 11px;
 
       background: #171717;
@@ -291,208 +414,317 @@
       box-shadow:
         0 2px 4px rgba(0,0,0,0.25);
 
-      /*
-        JS에서 좌표를 계속 변경
-      */
-      transform: translate(-50%, -50%);
+      transform:
+        translate(-50%, -50%);
+
     }
+
 
 
     /* ========================================
        COMPANY POSITION
     ======================================== */
 
+
     #google {
+
       left: 50%;
+
       top: 17%;
+
     }
+
 
     #aws {
+
       left: 24%;
+
       top: 38%;
+
     }
+
 
     #xai {
+
       left: 76%;
+
       top: 38%;
+
     }
+
 
     #meta {
+
       left: 50%;
-      top: 58%;
+
+      top: 59%;
+
     }
+
 
     #microsoft {
+
       left: 23%;
-      top: 80%;
+
+      top: 81%;
+
     }
 
+
     #oracle {
+
       left: 77%;
-      top: 80%;
+
+      top: 81%;
+
     }
+
 
 
     /* ========================================
        LEGEND
     ======================================== */
 
+
     .legend {
+
       position: absolute;
 
       right: 18px;
+
       top: 18px;
 
       padding: 11px 14px;
 
-      background: rgba(255,255,255,0.78);
+      background:
+        rgba(255,255,255,0.78);
 
       border-radius: 10px;
 
       font-size: 11px;
+
       line-height: 1.7;
 
       color: #666;
 
       z-index: 10;
+
     }
 
 
+
     /* ========================================
-       CLICK INFO PANEL
+       ★ CLICK INFO PANEL
     ======================================== */
 
+
     #info {
+
       position: absolute;
 
       left: 50%;
+
       bottom: 18px;
 
-      transform: translateX(-50%);
+      transform:
+        translateX(-50%);
 
       width: 340px;
 
+      max-width:
+        calc(100% - 30px);
+
       padding: 18px;
 
-      background: rgba(255,255,255,0.97);
+      background:
+        rgba(255,255,255,0.97);
 
-      border: 1px solid rgba(0,0,0,0.06);
+      border:
+        1px solid rgba(0,0,0,0.06);
 
       border-radius: 14px;
 
       box-shadow:
-        0 8px 25px rgba(0,0,0,0.14);
+        0 8px 25px
+        rgba(0,0,0,0.14);
 
       display: none;
 
       z-index: 20;
+
     }
+
 
     #info h2 {
-      margin: 0 0 13px;
+
+      margin:
+        0 0 13px;
 
       font-size: 19px;
+
     }
+
 
     .info-stat {
-      margin: 10px 0;
+
+      margin:
+        10px 0;
+
     }
+
 
     .info-title {
+
       font-size: 13px;
+
       font-weight: bold;
+
     }
 
+
     .info-description {
+
       margin-top: 2px;
 
       font-size: 11px;
 
       color: #777;
+
     }
 
+
     .prototype-warning {
+
       margin-top: 14px;
 
       padding-top: 10px;
 
-      border-top: 1px solid #eee;
+      border-top:
+        1px solid #eee;
 
       font-size: 10px;
 
       color: #999;
+
     }
 
 
+
     footer {
+
       text-align: center;
 
       font-size: 11px;
 
       color: #999;
 
-      padding: 10px 0 30px;
+      padding:
+        10px 0 30px;
+
     }
+
 
 
     /* ========================================
        MOBILE
     ======================================== */
 
-    @media (max-width: 600px) {
+
+    @media
+    (max-width: 600px) {
+
 
       #world {
-        height: 800px;
+
+        height: 820px;
+
       }
+
 
       .legend {
+
         display: none;
+
       }
+
 
       #google {
+
         top: 14%;
+
       }
+
 
       #aws {
+
         left: 23%;
+
         top: 35%;
+
       }
+
 
       #xai {
+
         left: 77%;
+
         top: 35%;
+
       }
+
 
       #meta {
+
         top: 56%;
+
       }
+
 
       #microsoft {
+
         left: 23%;
+
         top: 78%;
+
       }
 
+
       #oracle {
+
         left: 77%;
+
         top: 78%;
+
       }
+
 
     }
 
+
   </style>
+
 </head>
+
 
 
 <body>
 
 
+
 <header>
 
-  <h1>🏰 Compute Kingdom</h1>
+
+  <h1>
+    🏰 Compute Kingdom
+  </h1>
+
 
   <div class="subtitle">
+
     Visualizing the global AI compute race
+
   </div>
+
 
 </header>
 
@@ -501,11 +733,11 @@
 <div id="world">
 
 
-  <!-- ========================================
-       ★ V0.5 BATTLE LAYER
 
-       포탄은 여기에 자동 생성됨
+  <!-- ========================================
+       BATTLE LAYER
   ======================================== -->
+
 
   <div id="battle-layer"></div>
 
@@ -515,14 +747,20 @@
        LEGEND
   ======================================== -->
 
+
   <div class="legend">
 
-    🏰 Castle = Compute<br>
+    🏰 Castle = Current Compute<br>
+
     ⚡ Power = Energy Capacity<br>
+
     👤 People = Accelerator Count<br>
-    ⚔️ Swords = Accelerator Performance<br>
+
+    🏗️ Construction = Future Compute<br>
+
     ⚫ Cannonball = Competition<br>
-    Prototype V0.5
+
+    Prototype V0.6
 
   </div>
 
@@ -531,53 +769,79 @@
   <!-- ========================================
        GOOGLE
 
-       ★ 테스트용 임시 데이터
+       ★ 전부 테스트용 임시 데이터
 
-       Compute      = Tier 3
-       Power        = Tier 3
-       Accelerators = Tier 3
-       Performance  = Tier 3
+       Current Compute = 3
+       Power           = 3
+       Accelerators    = 3
+       Performance     = 3
+       Future Compute  = 2
   ======================================== -->
+
 
   <div
     class="kingdom"
+
     id="google"
 
     data-company="Google"
 
     data-compute="3"
+
     data-power="3"
+
     data-accelerators="3"
+
     data-performance="3"
+
+    data-future="2"
   >
+
 
     <div class="castle">
 
       <div class="tower"></div>
+
       <div class="tower main"></div>
+
       <div class="tower"></div>
 
     </div>
 
+
     <div class="company">
+
       GOOGLE
+
     </div>
+
 
     <div class="stats">
 
+
       <div class="stat-row">
+
         ⚡ ⚡⚡⚡
+
       </div>
 
+
       <div class="stat-row">
+
         👤 👤👤👤
+
       </div>
 
-      <div class="stat-row">
-        ⚔️ ⚔️⚔️⚔️
+
+      <div class="stat-row future">
+
+        🏗️ 🏗️🏗️
+
       </div>
+
 
     </div>
+
 
   </div>
 
@@ -585,47 +849,78 @@
 
   <!-- ========================================
        AWS
+
+       Current Compute = 3
+       Power           = 3
+       Accelerators    = 3
+       Performance     = 2
+       Future Compute  = 3
   ======================================== -->
+
 
   <div
     class="kingdom"
+
     id="aws"
 
     data-company="AWS"
 
     data-compute="3"
+
     data-power="3"
+
     data-accelerators="3"
+
     data-performance="2"
+
+    data-future="3"
   >
+
 
     <div class="castle">
 
       <div class="tower"></div>
+
       <div class="tower main"></div>
+
       <div class="tower"></div>
 
     </div>
 
+
     <div class="company">
+
       AWS
+
     </div>
+
 
     <div class="stats">
 
+
       <div class="stat-row">
+
         ⚡ ⚡⚡⚡
+
       </div>
 
+
       <div class="stat-row">
+
         👤 👤👤👤
+
       </div>
 
-      <div class="stat-row">
-        ⚔️ ⚔️⚔️
+
+      <div class="stat-row future">
+
+        🏗️ 🏗️🏗️🏗️
+
       </div>
+
 
     </div>
+
 
   </div>
 
@@ -633,46 +928,76 @@
 
   <!-- ========================================
        xAI
+
+       Current Compute = 2
+       Power           = 2
+       Accelerators    = 3
+       Performance     = 3
+       Future Compute  = 3
   ======================================== -->
+
 
   <div
     class="kingdom"
+
     id="xai"
 
     data-company="xAI"
 
     data-compute="2"
+
     data-power="2"
+
     data-accelerators="3"
+
     data-performance="3"
+
+    data-future="3"
   >
+
 
     <div class="castle">
 
       <div class="tower main"></div>
+
       <div class="tower"></div>
 
     </div>
 
+
     <div class="company">
+
       xAI
+
     </div>
+
 
     <div class="stats">
 
+
       <div class="stat-row">
+
         ⚡ ⚡⚡
+
       </div>
 
+
       <div class="stat-row">
+
         👤 👤👤👤
+
       </div>
 
-      <div class="stat-row">
-        ⚔️ ⚔️⚔️⚔️
+
+      <div class="stat-row future">
+
+        🏗️ 🏗️🏗️🏗️
+
       </div>
+
 
     </div>
+
 
   </div>
 
@@ -680,46 +1005,76 @@
 
   <!-- ========================================
        META
+
+       Current Compute = 2
+       Power           = 2
+       Accelerators    = 2
+       Performance     = 2
+       Future Compute  = 3
   ======================================== -->
+
 
   <div
     class="kingdom"
+
     id="meta"
 
     data-company="Meta"
 
     data-compute="2"
+
     data-power="2"
+
     data-accelerators="2"
+
     data-performance="2"
+
+    data-future="3"
   >
+
 
     <div class="castle">
 
       <div class="tower main"></div>
+
       <div class="tower"></div>
 
     </div>
 
+
     <div class="company">
+
       META
+
     </div>
+
 
     <div class="stats">
 
+
       <div class="stat-row">
+
         ⚡ ⚡⚡
+
       </div>
 
+
       <div class="stat-row">
+
         👤 👤👤
+
       </div>
 
-      <div class="stat-row">
-        ⚔️ ⚔️⚔️
+
+      <div class="stat-row future">
+
+        🏗️ 🏗️🏗️🏗️
+
       </div>
+
 
     </div>
+
 
   </div>
 
@@ -727,19 +1082,33 @@
 
   <!-- ========================================
        MICROSOFT
+
+       Current Compute = 1
+       Power           = 2
+       Accelerators    = 2
+       Performance     = 3
+       Future Compute  = 2
   ======================================== -->
+
 
   <div
     class="kingdom"
+
     id="microsoft"
 
     data-company="Microsoft"
 
     data-compute="1"
+
     data-power="2"
+
     data-accelerators="2"
+
     data-performance="3"
+
+    data-future="2"
   >
+
 
     <div class="castle">
 
@@ -747,25 +1116,40 @@
 
     </div>
 
+
     <div class="company">
+
       MICROSOFT
+
     </div>
+
 
     <div class="stats">
 
+
       <div class="stat-row">
+
         ⚡ ⚡⚡
+
       </div>
 
+
       <div class="stat-row">
+
         👤 👤👤
+
       </div>
 
-      <div class="stat-row">
-        ⚔️ ⚔️⚔️⚔️
+
+      <div class="stat-row future">
+
+        🏗️ 🏗️🏗️
+
       </div>
+
 
     </div>
+
 
   </div>
 
@@ -773,19 +1157,33 @@
 
   <!-- ========================================
        ORACLE
+
+       Current Compute = 1
+       Power           = 1
+       Accelerators    = 2
+       Performance     = 2
+       Future Compute  = 2
   ======================================== -->
+
 
   <div
     class="kingdom"
+
     id="oracle"
 
     data-company="Oracle"
 
     data-compute="1"
+
     data-power="1"
+
     data-accelerators="2"
+
     data-performance="2"
+
+    data-future="2"
   >
+
 
     <div class="castle">
 
@@ -793,100 +1191,183 @@
 
     </div>
 
+
     <div class="company">
+
       ORACLE
+
     </div>
+
 
     <div class="stats">
 
+
       <div class="stat-row">
+
         ⚡ ⚡
+
       </div>
 
+
       <div class="stat-row">
+
         👤 👤👤
+
       </div>
 
-      <div class="stat-row">
-        ⚔️ ⚔️⚔️
+
+      <div class="stat-row future">
+
+        🏗️ 🏗️🏗️
+
       </div>
+
 
     </div>
+
 
   </div>
 
 
 
   <!-- ========================================
-       CLICK DETAIL PANEL
+       ★ CLICK DETAIL PANEL
   ======================================== -->
 
+
   <div id="info">
+
 
     <h2 id="info-company"></h2>
 
 
+
     <div class="info-stat">
 
+
       <div class="info-title">
-        🏰 Compute :
+
+        🏰 Current Compute :
+
         <span id="info-compute"></span>
+
       </div>
 
+
       <div class="info-description">
-        전체 AI 연산 인프라 규모
+
+        현재 가동 중인 AI 연산 인프라 규모
+
       </div>
+
 
     </div>
 
 
+
     <div class="info-stat">
 
+
       <div class="info-title">
+
         ⚡ Power :
+
         <span id="info-power"></span>
+
       </div>
 
+
       <div class="info-description">
+
         데이터센터 전력 공급 규모
+
       </div>
+
 
     </div>
 
 
+
     <div class="info-stat">
 
+
       <div class="info-title">
+
         👤 Accelerators :
+
         <span id="info-accelerators"></span>
+
       </div>
+
 
       <div class="info-description">
+
         GPU · TPU 등 AI 가속기 수량
+
       </div>
 
+
     </div>
+
 
 
     <div class="info-stat">
 
+
       <div class="info-title">
+
         ⚔️ Performance :
+
         <span id="info-performance"></span>
+
       </div>
+
 
       <div class="info-description">
+
         보유 가속기의 세대 · 연산 성능
+
       </div>
 
+
     </div>
+
+
+
+    <div class="info-stat">
+
+
+      <div class="info-title">
+
+        🏗️ Future Compute :
+
+        <span id="info-future"></span>
+
+      </div>
+
+
+      <div class="info-description">
+
+        발표 또는 건설 중인 미래 AI 연산 인프라 규모
+
+      </div>
+
+
+    </div>
+
 
 
     <div class="prototype-warning">
-      ⚠ Prototype data — 실제 데이터가 아닌 시각화 테스트용 임시값입니다.
+
+      ⚠ Prototype data —
+      실제 데이터가 아닌
+      시각화 테스트용 임시값입니다.
+
     </div>
 
+
   </div>
+
 
 
 </div>
@@ -895,7 +1376,7 @@
 
 <footer>
 
-  Compute Kingdom • Prototype V0.5
+  Compute Kingdom • Prototype V0.6
 
 </footer>
 
@@ -904,8 +1385,20 @@
 <script>
 
 
+
   /* ========================================
-     CLICK SYSTEM
+     ★ V0.6 CLICK SYSTEM
+
+     회사 1회 클릭
+     → 상세 정보 OPEN
+
+     같은 회사 다시 클릭
+     → 상세 정보 CLOSE
+
+     다른 회사 클릭
+     → 해당 회사 정보로 변경
+
+     모바일에서도 동일하게 작동
   ======================================== */
 
 
@@ -917,56 +1410,147 @@
     document.getElementById("info");
 
 
+  /*
+    현재 선택된 회사 기억
+
+    null = 아무 회사도 선택 안됨
+  */
+
+  let selectedKingdom = null;
+
+
+
   kingdoms.forEach((kingdom) => {
+
 
     kingdom.addEventListener("click", () => {
 
 
-      document.getElementById("info-company")
+
+      /*
+        ★ 같은 회사를 다시 눌렀을 경우
+
+        상세창 닫기
+      */
+
+
+      if (selectedKingdom === kingdom) {
+
+
+        info.style.display =
+          "none";
+
+
+        selectedKingdom =
+          null;
+
+
+        return;
+
+      }
+
+
+
+      /*
+        새로운 회사 선택
+      */
+
+
+      selectedKingdom =
+        kingdom;
+
+
+
+      /* 회사 이름 */
+
+
+      document
+        .getElementById("info-company")
         .textContent =
         kingdom.dataset.company;
 
 
-      document.getElementById("info-compute")
+
+      /* 🏰 CURRENT COMPUTE */
+
+
+      document
+        .getElementById("info-compute")
         .textContent =
-        "Tier " + kingdom.dataset.compute;
+        "Tier " +
+        kingdom.dataset.compute;
 
 
-      document.getElementById("info-power")
+
+      /* ⚡ POWER */
+
+
+      document
+        .getElementById("info-power")
         .textContent =
-        "Tier " + kingdom.dataset.power;
+        "Tier " +
+        kingdom.dataset.power;
 
 
-      document.getElementById("info-accelerators")
+
+      /* 👤 ACCELERATOR COUNT */
+
+
+      document
+        .getElementById("info-accelerators")
         .textContent =
-        "Tier " + kingdom.dataset.accelerators;
+        "Tier " +
+        kingdom.dataset.accelerators;
 
 
-      document.getElementById("info-performance")
+
+      /* ⚔️ ACCELERATOR PERFORMANCE */
+
+
+      document
+        .getElementById("info-performance")
         .textContent =
-        "Tier " + kingdom.dataset.performance;
+        "Tier " +
+        kingdom.dataset.performance;
+
+
+
+      /* 🏗️ FUTURE COMPUTE */
+
+
+      document
+        .getElementById("info-future")
+        .textContent =
+        "Tier " +
+        kingdom.dataset.future;
+
+
+
+      /*
+        상세창 OPEN
+      */
 
 
       info.style.display =
         "block";
 
+
     });
+
 
   });
 
 
 
   /* ========================================
-     ★ V0.5 BATTLE SYSTEM
+     ★ BATTLE SYSTEM
 
-     회사 A → 회사 B 사이로
-     검은 포탄 하나를 직선 이동시킨다.
+     회사 A → 회사 B
 
-     포물선 없음.
-     궤적 없음.
-     폭발 없음.
+     검은 포탄이 직선으로 이동
 
-     현재는 단순 프로토타입.
+     현재는 실제 시장 경쟁 데이터를
+     의미하지 않는 프로토타입 연출
   ======================================== */
 
 
@@ -974,36 +1558,55 @@
     document.getElementById("battle-layer");
 
 
-  /*
-    현재 전투 연결 관계.
 
-    나중에는 이 부분도
-    데이터로 자동 생성 가능.
+  /*
+    전투 연결 관계
+
+    예:
+
+    ["google", "xai"]
+
+    Google → xAI
   */
+
 
   const battles = [
 
+
     ["google", "xai"],
+
     ["xai", "google"],
 
+
     ["aws", "google"],
+
     ["google", "aws"],
 
+
     ["meta", "oracle"],
+
     ["oracle", "meta"],
 
+
     ["microsoft", "meta"],
+
     ["meta", "microsoft"]
+
 
   ];
 
 
 
-  /*
-    포탄 하나 생성
-  */
+  /* ========================================
+     포탄 생성 함수
+  ======================================== */
 
-  function createCannonball(startID, endID, delay) {
+
+  function createCannonball(
+    startID,
+    endID,
+    delay
+  ) {
 
 
     const ball =
@@ -1014,36 +1617,35 @@
       "cannonball";
 
 
-    battleLayer.appendChild(ball);
+    battleLayer
+      .appendChild(ball);
 
 
-
-    /*
-      0 ~ 1 사이의 이동 진행률
-    */
 
     let progress = 0;
 
 
-    /*
-      포탄마다 출발 시간을 조금씩 다르게
-    */
-
     let startTime =
-      performance.now() + delay;
+      performance.now()
+      + delay;
 
 
 
     function move(currentTime) {
 
 
+
       if (currentTime < startTime) {
+
 
         requestAnimationFrame(move);
 
+
         return;
 
+
       }
+
 
 
       const start =
@@ -1056,6 +1658,7 @@
 
       const world =
         document.getElementById("world");
+
 
 
       const worldRect =
@@ -1072,58 +1675,88 @@
 
 
       /*
-        각 왕국의 중심 위치 계산
+        출발 위치
       */
 
+
       const startX =
+
         startRect.left
+
         - worldRect.left
+
         + startRect.width / 2;
 
 
+
       const startY =
+
         startRect.top
+
         - worldRect.top
-        + 45;
 
-
-      const endX =
-        endRect.left
-        - worldRect.left
-        + endRect.width / 2;
-
-
-      const endY =
-        endRect.top
-        - worldRect.top
         + 45;
 
 
 
       /*
-        이동 속도
-
-        숫자가 작을수록 느림
+        목적지 위치
       */
+
+
+      const endX =
+
+        endRect.left
+
+        - worldRect.left
+
+        + endRect.width / 2;
+
+
+
+      const endY =
+
+        endRect.top
+
+        - worldRect.top
+
+        + 45;
+
+
+
+      /*
+        포탄 속도
+
+        작을수록 느려짐
+      */
+
 
       progress += 0.004;
 
 
 
       /*
-        직선 보간
-
-        A 위치 → B 위치
+        직선 이동
       */
 
+
       const x =
+
         startX
-        + (endX - startX) * progress;
+
+        + (endX - startX)
+
+        * progress;
+
 
 
       const y =
+
         startY
-        + (endY - startY) * progress;
+
+        + (endY - startY)
+
+        * progress;
 
 
 
@@ -1137,52 +1770,71 @@
 
 
       /*
-        목적지 도착 시
-        다시 출발점으로 돌아감
+        목적지 도착
+
+        잠시 후 다시 발사
       */
+
 
       if (progress >= 1) {
 
+
         progress = 0;
+
 
         startTime =
           currentTime + 800;
 
+
       }
+
 
 
       requestAnimationFrame(move);
 
+
     }
 
 
+
     requestAnimationFrame(move);
+
 
   }
 
 
 
-  /*
-    각 전투 관계마다
-    포탄 생성
-  */
+  /* ========================================
+     모든 전투 관계에
+     포탄 생성
+  ======================================== */
 
-  battles.forEach((battle, index) => {
 
-    createCannonball(
+  battles.forEach(
+    (battle, index) => {
 
-      battle[0],
-      battle[1],
 
-      index * 350
+      createCannonball(
 
-    );
 
-  });
+        battle[0],
+
+        battle[1],
+
+        index * 350
+
+
+      );
+
+
+    }
+  );
 
 
 </script>
 
 
+
 </body>
+
 </html>
